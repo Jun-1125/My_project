@@ -59,6 +59,7 @@
     display flex
     padding 6px
     box-sizing border-box
+    z-index 40
     .guide_item
         display flex
         flex 1
