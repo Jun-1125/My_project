@@ -1,47 +1,45 @@
 <template>
   <div class="Personal">
     <div class="Wrap">
-      <header class="header">
-        <span class="left"><i class="iconfont icon-shouye" @click="$router.push('/home')"></i></span>
-        <div class="middle">
-          <a class="Select">网易严选</a>
-        </div>
-        <span class="Right">
-          <i class="iconfont icon-search"></i>
-          <i class="iconfont icon-iconfontgouwuche"></i>
-        </span>
-      </header>
+      <Header/>
       <div class="content">
         <div class="ContentTop">
           <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
         </div>
-        <div>
-          <button @click="$router.push('/login')">
-            <i class="iconfont"></i>
+        <div class="Login">
+          <button class="btn active" @click="$router.push('/login')">
+            <i class="iconfont icon-phone"></i>
             <span>手机号码登录</span>
           </button>
-          <button @click="$router.push('/login')">
-            <i class="iconfont"></i>
+          <button class="btn" @click="$router.push('/emaillogin')">
+            <i class="iconfont icon-youxiang"></i>
             <span>邮箱账号登录</span>
           </button>
-          <span @click="$router.push('/login')">手机号码快捷注册</span>
+          <span class="Iphone" @click="$router.push('/registered')">手机号码快捷注册></span>
         </div>
+        <footer class="footer">
+          <span><i class="iconfont icon-xiangmulan-weixinhao"></i>微信</span>
+          <span>|</span>
+          <span><i class="iconfont icon-icon5"></i>QQ</span>
+          <span>|</span>
+          <span><i class="iconfont icon-weibo"></i>微博</span>
+        </footer>
       </div>
-      <footer>
-        <span><i class="iconfont"></i>微信</span>
-        <span>|<i class="iconfont"></i>QQ|</span>
-        <span><i class="iconfont"></i>微博</span>
-      </footer>
+      
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import Header from '../../components/Header/Header.vue'
   export default {
     name:'Personal',
+    components:{
+      Header
+    },
     data(){
       return{
-
+        loginType:false
       }
     },
     
@@ -53,30 +51,56 @@
 
 .Personal
   width 100%
+  height 100%
   .Wrap
-    height 25px
+    height 100%
     width 100%
-    .header
-      height 25px
-      width 100%
-      margin-top 20px
-      padding-bottom 10px
-      display flex
-      font-size 22px
-      .left
-        padding-left 5%
-      .middle
-        padding 0 20%
-      .Right
-        padding-left 5%
     .content
-      height 312px
+      height 100%
       width 100%
       background-color #eee
+      position relative
       .ContentTop
-        height 100px
-        width 100%
+        height 100%
+        width 10%
+        line-height 40px
+        text-align center
+        position absolute
+        top 60px
+        left 30%
         img 
-          height 24px
-          width 70px
+          height 40px
+          width 128px
+      .Login
+        height 75px
+        position absolute
+        top 150px
+        left 15%
+        bottom 100px
+        display flex
+        flex-direction column
+        .btn
+          width 240px
+          height 30px
+          margin-bottom 20px
+          border 1px solid #b4282d
+          color #b4282d
+          background #fff
+          &.active
+            background #b4282d
+            color #fff
+        .Iphone
+          color #333
+          font-size 16px
+          text-align center 
+          width 100%
+      .footer
+        position fixed
+        bottom 60px
+        left 20%
+        color #979797
+        span
+          margin-left 10px
+          .iconfont
+            margin-right 6px
 </style>

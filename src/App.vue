@@ -16,7 +16,6 @@ import FooterGuide from '../src/components/FooterGuide/FooterGuide.vue'
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  #app
-    color red
+  
  
 </style>

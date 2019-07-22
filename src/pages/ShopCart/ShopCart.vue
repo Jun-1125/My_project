@@ -14,8 +14,9 @@
           </span>
         </div>
         <div class="main">
-          <i class="iconfont icon-iconfontgouwuche"></i>
-          <button  @click="$router.push('/login')">登录</button>
+          <span class="img"></span>
+          <div class="maintext">去添加点什么吧</div>
+          <button class="btn" @click="$router.push('/login')">登录</button>
         </div>
       </div>
     </div>
@@ -72,4 +73,30 @@
         width 100%
         background #eee
         text-align center
+        position absolute
+        top 0
+        right 0
+        bottom -400px
+        left 0
+        margin auto
+        .img
+          height 130px
+          width 130px
+          display inline-block
+          vertical-align middle
+          background-size 130px 130px
+          background-image url(//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noCart-d6193bd6e4.png)
+          background-repeat no-repeat
+        .maintext
+          color #999
+          line-height 10px
+          font-size 15px 
+          margin-bottom 20px
+        .btn
+          height 50px
+          width 260px
+          color #fff
+          background #b4282d
+          border-radius 3px
+          margin auto
 </style>

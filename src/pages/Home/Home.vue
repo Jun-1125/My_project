@@ -476,8 +476,12 @@
                   <span class="Figureprice">￥239</span>
                   <p class="FigureaddPrice">2件7折</p>
                 </a>
-              </ul>
-              <ul class="FigureImg swiper-slide">
+                <a class="ItemContent">
+                  <img src="https://yanxuan.nosdn.127.net/58024eba2c1d1c1ff717881eb908dbc1.png?imageView&quality=65&thumbnail=330x330" alt="">
+                  <span class="FigureLife">随卷随心电动造型器</span>
+                  <span class="Figureprice">￥239</span>
+                  <p class="FigureaddPrice">2件7折</p>
+                </a>
                 <a class="ItemContent">
                   <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
                   <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
@@ -486,13 +490,16 @@
               </ul>
               <ul class="FigureImg swiper-slide">
                 <a class="ItemContent">
-                  <img src="https://yanxuan.nosdn.127.net/894b48e0a0dc9ed949da5a995e4114ad.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="FigureLife">射频导入嫩肤仪</span>
-                  <span class="Figureprice">￥399</span>
-                  <p class="FigureaddPrice">抄底特惠</p>
+                  <img src="https://yanxuan.nosdn.127.net/58024eba2c1d1c1ff717881eb908dbc1.png?imageView&quality=65&thumbnail=330x330" alt="">
+                  <span class="FigureLife">随卷随心电动造型器</span>
+                  <span class="Figureprice">￥239</span>
+                  <p class="FigureaddPrice">2件7折</p>
                 </a>
-              </ul>
-              <ul class="FigureImg swiper-slide">
+                <a class="ItemContent">
+                  <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
+                  <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
+                  <span class="Figureprice">￥27.9</span>
+                </a>
                 <a class="ItemContent">
                   <span class="FigureLife">查看更多</span>
                 </a>
@@ -500,7 +507,49 @@
             </div>
           </div>
         </div>
-        
+        <div class="FigureFooter">
+          <ul class="FigureImg">
+            <a class="ItemContent">
+              <img src="https://yanxuan.nosdn.127.net/58024eba2c1d1c1ff717881eb908dbc1.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <span class="FigureLife">随卷随心电动造型器</span>
+              <span class="Figureprice">￥239</span>
+              <p class="FigureaddPrice">2件7折</p>
+            </a>
+          </ul>
+          <ul class="FigureImg">
+            <a class="ItemContent">
+              <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
+              <span class="Figureprice">￥27.9</span>
+            </a>
+          </ul>
+          <ul class="FigureImg">
+            <a class="ItemContent">
+              <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
+              <span class="Figureprice">￥27.9</span>
+            </a>
+          </ul>
+          <ul class="FigureImg">
+            <a class="ItemContent">
+              <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
+              <span class="Figureprice">￥27.9</span>
+            </a>
+          </ul>
+          <ul class="FigureImg">
+            <a class="ItemContent">
+              <img src="https://yanxuan.nosdn.127.net/a10ed5c19533c9e1e2abf1d8cb843c24.png?imageView&quality=65&thumbnail=330x330" alt="">
+              <span class="FigureLife">10卷/提 谷风一木3层小卷纸</span>
+              <span class="Figureprice">￥27.9</span>
+            </a>
+          </ul>
+          <ul class="FigureImg">
+             <a class="ItemContent">
+              <span class="FigureLife">查看更多</span>
+            </a>
+          </ul>
+        </div>
       </div>
 
   </div>
@@ -538,17 +587,19 @@
         }
       })
 
-      var headerNav = new BScroll('.headerNav', {
-        scrollX: true,
-        scrollY:false,
-        click: true
+     /*  this.$nextTick(
+        new BScroll('.FigureFooter', {
+          scrollX: true,
+          scrollY:false,
+      }))
+ */
+      new BScroll('.headerNav', {
+          scrollX: true,
+          scrollY:false,
+          click: true
       })
 
-      var FigureList = new BScroll('.FigureList', {
-        scrollX: true,
-        scrollY:false,
-      })
-
+      
     },
   }
 </script>
@@ -564,6 +615,7 @@
   .headerTop
     position fixed
     margin-bottom 44px
+    background-color #fff
     z-index 30
     .header
       height 44px
@@ -571,7 +623,6 @@
       align-items center
       line-height 36px
       padding 4px 20px
-      background-color #fff
       z-index 40
       .logo
         height 20px
@@ -781,7 +832,7 @@
             height 150px
       .right
         height 219px
-        width 170px
+        width 165px
         float right 
         margin-right 12px
         .top
@@ -988,7 +1039,7 @@
         border-bottom 2px solid #eee
         .ListItem1
           height 100px
-          width 173px
+          width 170px
           float left
           margin 0 2px 0
           position relative
@@ -1321,7 +1372,6 @@
     width 375px
     height 190px
     margin-top 8px
-    box-sizing border-box
     display flex
     .FigureList
       width 375px
@@ -1332,16 +1382,14 @@
         width 100px
         height 100%
         margin-left 12px
-        padding-bottom 5px
         display flex
         .swiper-slide
-          background-color #f4f4f4
           margin-bottom 2px
           display flex
-          width 100px
+          width 27%
           height 130px
           .ItemContent
-            width 100px
+            width 100%
             height 130px
             overflow hidden
             flex-wrap nowrap
@@ -1374,4 +1422,47 @@
               vertical-align middle
               width 35px
               margin-top 6px
+    //懒加载
+  .FigureFooter
+    width 375px
+    height 100%
+    margin-top -46px
+    display flex
+    .FigureImg
+      width 100px
+      height 100%
+      .ItemContent
+        width 100px
+        height 130px
+        overflow hidden
+        flex-wrap nowrap
+        img
+          width 100px
+          height 120px
+        .FigureLife
+          font-size 5px
+          overflow visible
+          white-space normal
+          text-overflow ellipsis
+          line-height 12px
+          color #333
+          display inline-block
+        .Figureprice
+          display inline-block
+          font-size 5px
+          color #b4282d
+          overflow visible
+          white-space normal
+          text-overflow ellipsis
+          margin-top 6px
+        .FigureaddPrice
+          display inline-block
+          color #CE2424
+          border 1px solid #CE2424
+          font-size 8px
+          border-radius 5px
+          padding-right 10px
+          vertical-align middle
+          width 35px
+          margin-top 6px
 </style>

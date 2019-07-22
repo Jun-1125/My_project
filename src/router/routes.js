@@ -4,7 +4,12 @@ const Category = () => import('../pages/Category/Category.vue')
 const Physical = () => import('../pages/Physical/Physical.vue')
 const ShopCart = () => import('../pages/ShopCart/ShopCart.vue')
 const Personal = () => import('../pages/Personal/Personal.vue')
-const Login = () => import('../pages/Login/Login.vue')
+const PhoneLogin = () => import('../pages/PhoneLogin/PhoneLogin.vue')
+const Phoneregistered = () => import('../pages/Phoneregistered/Phoneregistered.vue')
+const EmailLogin = () => import('../pages/EmailLogin/EmailLogin.vue')
+const Emailregistered = () => import('../pages/Emailregistered/Emailregistered.vue')
+
+const Select = () => import('../pages/Physical/Select.vue')
 
 
 export default [
@@ -31,7 +36,13 @@ export default [
             isShowFooter: true
           }
     },
-    
+    {
+        path: '/select',
+        component: Select,
+        meta: {
+            isShowFooter: true
+          }
+    },
     {
         path: '/shopcart',
         component: ShopCart,
@@ -50,11 +61,36 @@ export default [
     
     {
         path: '/login',
-        component: Login,
+        component: PhoneLogin,
         meta: {
             isShowFooter: false
           }
     },
+
+    {
+        path: '/emaillogin',
+        component: EmailLogin,
+        meta: {
+            isShowFooter: false
+          }
+    },
+
+    {
+        path: '/registered',
+        component: Phoneregistered,
+        meta: {
+            isShowFooter: false
+          }
+    },
+
+    {
+        path: '/emailregistered',
+        component: Emailregistered,
+        meta: {
+            isShowFooter: false
+          }
+    },
+
     {
         path: '/',
         redirect: 'home'

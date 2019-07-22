@@ -1,11 +1,15 @@
 <template>
   <div>
-    Login登录界面
+      <SelectHeader/>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import SelectHeader from '../../components/Select/Header.vue'
   export default {
+      components:{
+        SelectHeader
+      }
   }
 </script>
 
