@@ -462,22 +462,22 @@
         </div>
 
         <!-- 底部轮播图 -->
-        <div class="FigureTop">
-          <a class="FigureBig" href="javascript:"></a>
-        </div>
-       
+       <FooterClassify/>
       </div>
 
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-
+ import FooterClassify from './FooterClassify.vue'
  import BScroll from 'better-scroll'
  import Swiper from 'swiper'
  import 'swiper/dist/css/swiper.css'
   export default {
     name:'Home',
+    computed:{
+      FooterClassify
+    },
     data(){
       return{
         isArrow:true,
@@ -502,13 +502,6 @@
           el: '.swiper-pagination'
         }
       })
-
-      new BScroll('.headerNav', {
-          scrollX: true,
-          scrollY:false,
-          click: true
-      })
-      
     },
   }
 </script>
@@ -1269,13 +1262,6 @@
               vertical-align middle
               width 30px
   //底部轮播图
-  .FigureTop
-    height 185px
-    .FigureBig
-      background-image url(https://yanxuan.nosdn.127.net/dc972eece406987cbdd29f8849055d45.jpg?imageView&thumbnail=750x0&quality=75)
-      background-size 100% 100%
-      display block
-      width 100%
-      height 100%
+ 
   
 </style>
