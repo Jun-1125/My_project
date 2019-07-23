@@ -109,3 +109,7 @@
  input{
   outline: none
  }
+ /* 去除原点 */
+ ul{
+   list-style: none;
+ }

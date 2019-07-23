@@ -7,7 +7,9 @@ import {
     reqCategoryData,
     reqCategoryListData,
     reqThingsData,
-    reqThingsNav
+    reqThingsNav,
+    reqSearchInitialData,
+    reqFehelper
   } from '../api'
 
 import {
@@ -15,7 +17,8 @@ import {
     RECEIVE_CATEGORY,
     RECEIVE_SEARCHINITIAL,
     RECEIVE_THINGSDATA,
-    RECEIVE_THINGSNAV
+    RECEIVE_THINGSNAV,
+    RECEIVE_FEHELPER
 } from './mutation_type'
   
 export default {
@@ -35,7 +38,7 @@ export default {
 
   async getCategoryData({commit},callback){
     //发送异步ajax请求   
-      //有顺序要求  reqHomeData返回的一个promise   和index.js中的地址传递位置
+      //有顺序要求  reqCategoryData返回的一个promise   和index.js中的地址传递位置
     const result = await reqCategoryData () 
     console.log(result)
     // 有结构后，提交mutation
@@ -48,7 +51,7 @@ export default {
 
   async getCategoryListData({commit}){
     //发送异步ajax请求   
-      //有顺序要求  reqHomeData返回的一个promise   和index.js中的地址传递位置
+      //有顺序要求  reqCategoryListData返回的一个promise   和index.js中的地址传递位置
     const result = await reqCategoryListData () 
     // 有结构后，提交mutation
     if(result.code*1 === 200){
@@ -57,9 +60,9 @@ export default {
     }
   },
 
-  async getThingsNav({commit},callback){
+/*   async getThingsNav({commit},callback){
     //发送异步ajax请求   
-      //有顺序要求  reqHomeData返回的一个promise   和index.js中的地址传递位置
+      //有顺序要求  reqThingsNav返回的一个promise   和index.js中的地址传递位置
     const result = await reqThingsNav () 
     // 有结构后，提交mutation
     if(result.code*1 === 200){
@@ -67,14 +70,32 @@ export default {
       commit(RECEIVE_THINGSNAV,result.data)//提交会触发mutations调用
       callback()
     }
-  },
-  
+  }, */
+
   async reqThingsData({commit}) {
+    //发异步ajax请求
     const result = await reqThingsData ()
     if (result.code*1 === 200) {
       commit(RECEIVE_THINGSDATA,result.data)
     }
-  }
+  },
 
+  async getFehelper({commit}) {
+    //发异步ajax请求
+    const result = await reqFehelper ()
+    console.log(result)
+    if (result.code*1 === 200) {
+      commit(RECEIVE_FEHELPER,result.data)
+    }
+  },
+
+
+  // 搜索
+  async getSearchInitialData ({commit}) {
+    const result = await reqSearchInitialData()
+    if (result.code*1 === 200) {
+      commit(RECEIVE_SEARCHINITIAL,result.data)
+    }
+  },
   
 }

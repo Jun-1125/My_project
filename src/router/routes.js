@@ -3,7 +3,7 @@ import { finished } from 'stream';
 //在注册路由时不会加载(请求获取)模块对应的打包文件,只有请求对应路由路径才会请求加载
 const Home = () => import('../pages/Home/Home.vue')
 const Category = () => import('../pages/Category/Category.vue')
-const Things = () => import('../pages/Physical/Physical.vue')
+const Fehelper = () => import('../pages/Physical/Physical.vue')
 const ShopCart = () => import('../pages/ShopCart/ShopCart.vue')
 const Personal = () => import('../pages/Personal/Personal.vue')
 const PhoneLogin = () => import('../pages/PhoneLogin/PhoneLogin.vue')
@@ -13,7 +13,7 @@ const Emailregistered = () => import('../pages/Emailregistered/Emailregistered.v
 
 const Select = () => import('../pages/Physical/Select.vue')
 const Find = () => import('../pages/Physical/Find.vue')
-
+const Search = () => import('../pages/Search/Search.vue')
 
 export default [
     {
@@ -22,6 +22,10 @@ export default [
       meta: {
         isShowFooter: true
       }
+    },
+    {
+      path: '/search',
+      component: Search
     },
 
     {
@@ -33,15 +37,15 @@ export default [
     },
 
     {
-      path: '/things',
-      component: Things,
+      path: '/fehelper',
+      component: Fehelper,
       meta: {
         isShowFooter: true
       },
-      redirect:'/things/find',
+      redirect:'/fehelper/physical',
       children:[
         {
-          path:'/things/find',
+          path:'/fehelper/physical',
           component:Find,
           meta:{
             isShowFooter: true

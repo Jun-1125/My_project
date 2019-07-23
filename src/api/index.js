@@ -4,9 +4,14 @@ import ajax from './ajax'
 export const reqHomeData = () => ajax('/homeData')
 export const reqCategoryData = () => ajax('/category')
 export const reqCategoryListData = () => ajax('/categoryList')
+export const reqFehelper = () => ajax('/fehelper')
+// /topic/v1/find/recAuto.json?page=1&size=5
+
+// export const reqFehelper = () => ajax('/api/topic/v1/find/recAuto.json?page=1&size=5')//搜索的初始化显示数据
 
 //网易数据
 export const reqSearchInitialData = () => ajax('/api/xhr/search/init.json')//搜索的初始化显示数据
+
 export const reqThingsNav = () => ajax('/api/topic/v1/find/getTabs.json')//things的导航数据
 export const reqThingsData = () => ajax('/api/topic/v1/find/recManual.json')//things的数据
 export const reqThingsSearch = (keywordPrefix) => ajax('/api/xhr/search/searchAutoComplete.json?csrf_token=29c2d6669c619d172a33deb5c6c9a837',{keywordPrefix})// 搜索内容

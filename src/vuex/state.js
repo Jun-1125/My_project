@@ -5,5 +5,6 @@ export default {
     searchInitialData:{},
     // 识物界面需要的数据
     thingsNav: [],
-    thingsData: []
+    thingsData: [],
+    result:[]//识物的数据
 }

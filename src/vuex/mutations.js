@@ -2,11 +2,12 @@
 
 
 import {
-    RECEIVE_HOMEDATA,
-    RECEIVE_CATEGORY,
-    RECEIVE_SEARCHINITIAL,
-    RECEIVE_THINGSNAV,
-    RECEIVE_THINGSDATA
+  RECEIVE_HOMEDATA,
+  RECEIVE_CATEGORY,
+  RECEIVE_THINGSNAV,
+  RECEIVE_THINGSDATA,
+  RECEIVE_FEHELPER,
+  RECEIVE_SEARCHINITIAL
 } from './mutation_type'
 export default {
 /* [RECEIVE_HOMEDATA](state, 自定义的实参address2) {
@@ -34,5 +35,11 @@ export default {
   
   [RECEIVE_THINGSDATA] (state,data) {
     state.thingsData = data
-  }
+  },
+
+  // 识物
+  [RECEIVE_FEHELPER](state, data) {
+    state.fehelper = data
+  },
+
 }

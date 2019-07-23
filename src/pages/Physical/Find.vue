@@ -1,68 +1,96 @@
 <template>
-  <div class="Find">
-    <nav class="containerWrap">
-      <nav class="navList">
-        <ul>
-          <li v-for="(thing) in thingsNav" :key="thing.tabId">{{thing.tabName}}</li>
-        </ul>
-      </nav>
-      <!--中间的内容部分-->
-      <div class="navContentWrap">
-        <section class="center" v-for="(things,index) in thingsData" :key="index">
-          <header v-for="(thing,index) in things.topics" :key="index">
-            <div class="style2" v-if="thing.style === 2">
-              <Split />
-              <section class="wrap">
-                <div class="left">
-                  <h3>
-                    <div>
-                      <img :src="thing.avatar" alt="">
-                    </div>
-                    <span>{{thing.nickname}}</span>
-                  </h3>
-                  <p class="big">{{thing.title}}</p>
-                  <p class="small">{{thing.subTitle}}</p>
-                  <section>
-                    <i class="iconfont icon-kanguo"></i>
-                    <span>{{thing.readCount}}人看过</span>
-                  </section>
-                </div>
-                <div class="right">
-                  <img :src="thing.picUrl" alt="">
-                </div>
-              </section>
+  <div class="Physical">
+    <Header/>
+    
+      <!-- 内容区域轮播图 -->
+    
+    <!-- <section class="center" v-for="(things,index) in thingsData" :key="index">
+      <header v-for="(thing,index) in things.topics" :key="index">
+        <div class="style2" v-if="thing.style === 2">
+          <div class="Bed">
+            <div class="InfoTitle">
+              <img :src="thing.avatar" alt="">
+              <span class="left">{{thing.nickname}}</span>
             </div>
-            <div class="style1" v-if="thing.style === 1">
-              <Split />
-              <section class="wrap">
-                <h3>
-                  <div>
-                    <img :src="thing.avatar" alt="">
-                  </div>
-                  <span>{{thing.nickname}}</span>
-                </h3>
-                <p>{{thing.title}}</p>
-                <div class="bigImage">
-                  <img :src="thing.picUrl" alt="">
-                </div>
-                <footer>
-                  <i class="iconfont icon-kanguo"></i>
-                  <span>{{thing.readCount}}人看过</span>
-                </footer>
-              </section>
+            <a class="InfoItem" href="javascript:;">
+              <p class="Infodec">{{thing.title}}</p>
+              <p class="Infodec">{{thing.subTitle}}</p>
+            </a>
+            <span>
+              <i class="iconfont icon-kanguo"></i>
+              <div>{{thing.readCount}}人看过</div>
+            </span>
+          </div>
+        </div>
+        
+        <div class="style1" v-if="thing.style === 1">
+        <div class="Bed">
+            <div class="InfoTitle">
+              <img :src="thing.avatar" alt="">
+              <span class="left">{{thing.nickname}}</span>
             </div>
-          </header>
-        </section>
+            <a class="InfoItem" href="javascript:;">
+              <p class="Infodec">{{thing.title}}</p>
+              <img :src="thing.picUrl" alt="">
+            </a>
+            <footer>
+              <i class="iconfont icon-kanguo"></i>
+              <span>{{thing.readCount}}人看过</span>
+            </footer>
+          </div>
+        </div>
+      </header>
+      
+    </section> -->
+    
+    <div>
+      <div class="Advice" v-for="(topic,index) in result.topics" :key="index">
+        <div class="InfoTitle">
+          <img :src="topic.avatar" alt="">
+          <span class="left">{{topic.nickname}}</span>
+        </div>
+        <a class="InfoItem" href="javascript:;">
+          <p class="Infodec">{{topic.title}}</p>
+          <p class="Infodec">{{topic.subTitle}}</p>
+        </a>
+        <span>
+          <i class="iconfont icon-kanguo"></i>
+          <div>{{topic.readCount}}人看过</div>
+        </span>
+        <div class="ImgBig">
+          <img :src="topic.picUrl" alt="">
+        </div>
       </div>
-    </nav>
+      
+    </div>
+   
+    
+
   </div>
 </template>
-<script>
+
+<script type="text/ecmascript-6">
   import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   import Split from './Split.vue'
   export default {
-    mounted () {
+     mounted () {
+      //分发action请求
+      this.$store.dispatch('getFehelper',() => {
+        this.$nextTick(() => {
+          new BScroll('.navList',{//导航滑动
+            scrollX: true
+          })
+        })
+      })
+    },
+    computed: {
+      ...mapState(["result"])
+    },
+    components: {
+      Split,
+    } 
+   /*  mounted () {
       //请求导航数据
       this.$store.dispatch('getThingsNav',() => {
         this.$nextTick(() => {
@@ -79,124 +107,54 @@
     },
     components: {
       Split,
-    }
+    } */
   }
 </script>
+
 <style lang="stylus" rel="stylesheet/stylus" scoped>
- @import '../../common/stylus/mixins.styl'
- 
-  .Find
+@import '../../common/stylus/mixins.styl'
+
+.Physical
+  padding-bottom 100px
+  width 100%
+  height 100%
+  overflow hidden
+  // 产品轮播图
+  .fixed
+    height 185px
     width 100%
-    height 100%
-    .SelectHeader
-    position fixed
-    margin-bottom 44px
-    padding-right 10px
-    .containerWrap
-      padding-top 90px
-      .navList
-        width 100%
-        overflow hidden
-        border-bottom 1px solid #d9d9d9
-        border-top 1px solid #d9d9d9
-        background-color #fafafa
-        position fixed
-        top 88px
-        left 0
-        z-index 10
-        ul
-          display flex
-          height 74.5px
-          line-height 74.5px
-          width 1020px
-          li
-            font-size 28px
-            margin 0 20px
-            padding 0 8px
-            color #7f7f7f
-      .navContentWrap
-        padding-top 74.5px
-        .center
-          position relative
-          .style2
-            .wrap
-              display flex
-              justify-content space-between
-              padding 32px 30px
-              .left
-                width 400px
-                h3
-                  display flex
-                  height 54px
-                  line-height 54px
-                  div
-                    width 54px
-                    height 54px
-                    border-radius 50%
-                    overflow hidden
-                    margin-right 12px
-                    img
-                      width 45px
-                      height 45px
-                  span
-                    font-size 28px
-                    color #333
-                .big
-                  color #333
-                  font-size 16px
-                  padding-top 32px
-                .small
-                  color #7f7f7f
-                  font-size 28px
-                  padding-top 8px
-                section
-                  margin-top 18px
-                  color #999
-                  i
-                    font-size 20px
-              .right
-                height 172px
-                width 172px
-                border-radius 8px
-                overflow hidden
-                img
-                  height 172px
-                  width 172px
-          .style1
-            .wrap
-              padding 32px 30px
-              h3
-                display flex
-                height 54px
-                line-height 54px
-                margin-bottom 24px
-                div
-                  width 54px
-                  height 54px
-                  border-radius 50%
-                  overflow hidden
-                  margin-right 12px
-                  img
-                    width 54px
-                    height 54px
-                span
-                  font-size 28px
-                  color #333
-              p
-                font-size 32px
-                color #333
-                margin-bottom 16px
-              .bigImage
-                border-radius 8px
-                overflow hidden
-                img
-                  height 176px
-                  width 290px
-              footer
-                margin-top 10px
-                color #999
-                span
-                  font-size 28px
-                i
-                  font-size 30px
+    margin-top 120px
+    border-bottom 10px solid #eee
+    img 
+      height 140px
+      width 345px
+  .Advice
+    width 100%
+    padding 0 14px
+    border-bottom 10px solid #eee
+    .InfoTitle
+      width 100%
+      padding-top 10px
+      display flex
+      line-height 30px
+      img 
+        height 28px
+        width 28px
+        border-radius 50%
+      .left
+        font-size 12px
+    .InfoItem
+      width 100%
+      height 100%
+      margin 2px
+      .Infodec
+        font-size 20px
+        white-space wrap
+        line-height 35px
+        color #333
+      img
+        height 160px
+        width 85%
+           
+
 </style>

@@ -4,7 +4,7 @@
       <div class="headerTop">
         <Header class="header">
           <img class="logo" src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png" alt="">
-          <div class="input">
+          <div class="input" @click="$router.push('/search')">
             <i class="iconfont icon-search"></i>
             <span class="placeholder">搜索商品，共21702款好物</span>
           </div>
