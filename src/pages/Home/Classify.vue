@@ -1,5 +1,5 @@
 <template>
-  <section class="FooterClassify">
+  <section class="Classify">
     <div class="classify-container">
       <img src="https://yanxuan.nosdn.127.net/41fbcc8dedb1bf6dee02ea5bd5af29db.jpg?imageView&quality=75&thumbnail=750x0" alt="">
       <div class="classify-list">
@@ -11,16 +11,42 @@
               <span class="good-price">￥289</span>
             </div>
           </li>
+          <li>
+            <div class="good-info">
+              <img src="https://yanxuan.nosdn.127.net/41fbcc8dedb1bf6dee02ea5bd5af29db.jpg?imageView&quality=75&thumbnail=750x0" alt="">
+              <span class="good-name">滋养液</span>
+              <span class="good-price">￥289</span>
+            </div>
+          </li>
+           <li>
+            <div class="good-info">
+              <img src="https://yanxuan.nosdn.127.net/41fbcc8dedb1bf6dee02ea5bd5af29db.jpg?imageView&quality=75&thumbnail=750x0" alt="">
+              <span class="good-name">滋养液</span>
+              <span class="good-price">￥289</span>
+            </div>
+          </li>
+           <li>
+            <div class="good-info">
+              <img src="https://yanxuan.nosdn.127.net/41fbcc8dedb1bf6dee02ea5bd5af29db.jpg?imageView&quality=75&thumbnail=750x0" alt="">
+              <span class="good-name">滋养液</span>
+              <span class="good-price">￥289</span>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </section>
 </template>
 <script>
-  import BSroll from 'better-scroll'
+ import BScroll from 'better-scroll'
   export default {
+    data(){
+      return{
+
+      }
+    },
     mounted(){
-      new BScroll('.FooterClassify', {
+      new BScroll('.classify-container', {
         scrollX: true,
         click:true
       })
@@ -58,3 +84,8 @@
           .good-price
             color $red
 </style>
+
+<!--
+
+
+-->

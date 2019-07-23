@@ -462,21 +462,21 @@
         </div>
 
         <!-- 底部轮播图 -->
-       <FooterClassify/>
+       <Classify/>
       </div>
 
   </div>
 </template>
 
 <script type="text/ecmascript-6">
- import FooterClassify from './FooterClassify.vue'
+ import Classify from './Classify.vue'
  import BScroll from 'better-scroll'
  import Swiper from 'swiper'
  import 'swiper/dist/css/swiper.css'
   export default {
     name:'Home',
-    computed:{
-      FooterClassify
+    components:{
+      Classify
     },
     data(){
       return{
