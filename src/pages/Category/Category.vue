@@ -10,40 +10,21 @@
     
     <div class="content">
       <!-- 左侧列表 -->
-      <ul class="Contentleft navList">
-        <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
-          :class="index===newindex? 'item active':'item'">{{item}}</li>
+      <ul class="Contentleft navList" v-if="categoryData.categoryL1List">
+        <li class="item" v-for="(category,index) in categoryData.categoryL1List" :key="category.id" @click="getIndex(index)" 
+          :class="index===newindex? 'item active':'item'">{{category.name}}</li>
       </ul>
       <!-- 右侧列表 -->
-      <div class="Contentright">
+      <div class="Contentright" v-if="categoryData.categoryL1List">
         <span class="RightImg">
-          <img src="https://yanxuan.nosdn.127.net/cb225335d4a438564040f00b448e8db8.png?imageView&thumbnail=0x196" alt="">
+          <img :src="categoryData.categoryL1List[newindex].wapBannerUrl" alt="">
         </span>
         <ul class="cateList">
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/56486ce98e6ba7ae59a617759e739b09.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">员工精选好货</span>
+          <li class="Item" v-for="(item) in categoryData.categoryL1List[newindex].subCateList" :key="item.id">
+            <img :src="item.bannerUrl" alt="">
+            <span class="ItemText">{{item.name}}</span>
           </li>
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/537552999ee981ed17eccf968fb2fd23.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">夏日女士穿搭特价</span>
-          </li>
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/56486ce98e6ba7ae59a617759e739b09.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">员工精选好货</span>
-          </li>
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/56486ce98e6ba7ae59a617759e739b09.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">员工精选好货</span>
-          </li>
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/537552999ee981ed17eccf968fb2fd23.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">夏日女士穿搭特价</span>
-          </li>
-          <li class="Item">
-            <img src="https://yanxuan.nosdn.127.net/56486ce98e6ba7ae59a617759e739b09.png?imageView&quality=85&thumbnail=144x144" alt="">
-            <span class="ItemText">员工精选好货</span>
-          </li>
+          
         </ul>
       </div>
     </div>
@@ -52,13 +33,36 @@
 </template>
 
 <script type="text/ecmascript-6">
+import {mapState} from 'vuex'//映射
+import BScroll from 'better-scroll'
   export default {
     name:'Catergory',
     data(){
       return{
-        newindex:0,
-        navList:['推荐专区','夏凉专区','新品专区','居家生活','服饰鞋包','美食酒水','个护清洁','母婴亲子','运动旅行','数码家电','全球特色']
+        newindex: 0
       }
+    },
+    methods:{
+      getIndex(index){
+        this.newindex = index
+      }
+    },
+    computed:{
+      ...mapState(['categoryData'])
+    },
+    mounted(){
+      //分发事件分发action
+      this.$store.dispatch("getCategoryData",() => {
+        this.$nextTick(() => {
+          new BScroll('.navList',{
+            click: true
+          })
+          new BScroll('.cateList')
+        })
+      })
+     
+       
+     
     }
   }
 </script>
@@ -131,6 +135,7 @@
           height 72px
           width 72px
           margin-right 15px
+          margin-bottom 25px
           img 
             display block
             width 100%
