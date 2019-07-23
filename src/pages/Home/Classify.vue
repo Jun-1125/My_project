@@ -46,7 +46,7 @@
       }
     },
     mounted(){
-      new BScroll('.classify-container', {
+      new BScroll('.classify-list', {
         scrollX: true,
         click:true
       })
