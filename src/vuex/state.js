@@ -6,5 +6,5 @@ export default {
     // 识物界面需要的数据
     thingsNav: [],
     thingsData: [],
-    result:[]//识物的数据
+    fehelper:{}//识物的数据
 }

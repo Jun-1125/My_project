@@ -4,7 +4,7 @@
       <header class="header">
         <span class="left"><i class="iconfont icon-shouye" @click="$router.push('/home')"></i></span>
         <div class="middle">
-          <a  @click="$router.push('/things')">发现</a>
+          <a  @click="$router.back()">发现</a>
           <a class="Select Find">甄选家</a>
         </div>
         <span class="Right">

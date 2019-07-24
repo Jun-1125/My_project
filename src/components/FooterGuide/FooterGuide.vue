@@ -12,7 +12,7 @@
             </span>
             <span>分类</span>
         </span>
-        <span class="guide_item" :class="{on: $route.path==='/fehelper'}" @click="goTo('/fehelper')">
+        <span class="guide_item" :class="{on: $route.path==='/fehelper/physical'}" @click="goTo('/fehelper/physical')">
             <span class="item-icon">
                 <i class="iconfont icon-shiwutupian"></i>
             </span>

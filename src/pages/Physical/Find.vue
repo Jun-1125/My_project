@@ -1,49 +1,13 @@
 <template>
   <div class="Physical">
-    <Header/>
-    
+    <div class="headerNav">
+      <ul class="headerList">
+        <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
+        :class="index===newindex? 'item active':'item'">{{item}}</li>
+      </ul>
+    </div>
       <!-- 内容区域轮播图 -->
-    
-    <!-- <section class="center" v-for="(things,index) in thingsData" :key="index">
-      <header v-for="(thing,index) in things.topics" :key="index">
-        <div class="style2" v-if="thing.style === 2">
-          <div class="Bed">
-            <div class="InfoTitle">
-              <img :src="thing.avatar" alt="">
-              <span class="left">{{thing.nickname}}</span>
-            </div>
-            <a class="InfoItem" href="javascript:;">
-              <p class="Infodec">{{thing.title}}</p>
-              <p class="Infodec">{{thing.subTitle}}</p>
-            </a>
-            <span>
-              <i class="iconfont icon-kanguo"></i>
-              <div>{{thing.readCount}}人看过</div>
-            </span>
-          </div>
-        </div>
-        
-        <div class="style1" v-if="thing.style === 1">
-        <div class="Bed">
-            <div class="InfoTitle">
-              <img :src="thing.avatar" alt="">
-              <span class="left">{{thing.nickname}}</span>
-            </div>
-            <a class="InfoItem" href="javascript:;">
-              <p class="Infodec">{{thing.title}}</p>
-              <img :src="thing.picUrl" alt="">
-            </a>
-            <footer>
-              <i class="iconfont icon-kanguo"></i>
-              <span>{{thing.readCount}}人看过</span>
-            </footer>
-          </div>
-        </div>
-      </header>
-      
-    </section> -->
-    
-    <div>
+    <div v-for="(result,index) in fehelper.result" :key="index">
       <div class="Advice" v-for="(topic,index) in result.topics" :key="index">
         <div class="InfoTitle">
           <img :src="topic.avatar" alt="">
@@ -52,20 +16,15 @@
         <a class="InfoItem" href="javascript:;">
           <p class="Infodec">{{topic.title}}</p>
           <p class="Infodec">{{topic.subTitle}}</p>
+          <img :src="topic.picUrl" alt="">
         </a>
         <span>
           <i class="iconfont icon-kanguo"></i>
           <div>{{topic.readCount}}人看过</div>
         </span>
-        <div class="ImgBig">
-          <img :src="topic.picUrl" alt="">
-        </div>
       </div>
       
     </div>
-   
-    
-
   </div>
 </template>
 
@@ -74,40 +33,25 @@
   import BScroll from 'better-scroll'
   import Split from './Split.vue'
   export default {
+    data(){
+      return{
+        newindex:0,
+        navList:['推荐','居家生活','服饰鞋包','美食酒水','个护清洁','母婴亲子','运动旅行','数码家电','全球特色']
+      }
+    },
      mounted () {
       //分发action请求
-      this.$store.dispatch('getFehelper',() => {
-        this.$nextTick(() => {
-          new BScroll('.navList',{//导航滑动
-            scrollX: true
-          })
-        })
+      this.$store.dispatch('getFehelper',() => {})
+      new BScroll('.headerNav',{//导航滑动
+        scrollX: true
       })
     },
     computed: {
-      ...mapState(["result"])
+      ...mapState(["fehelper"])
     },
     components: {
       Split,
     } 
-   /*  mounted () {
-      //请求导航数据
-      this.$store.dispatch('getThingsNav',() => {
-        this.$nextTick(() => {
-          new BScroll('.navList',{//导航滑动
-            scrollX: true
-          })
-        })
-      })
-      //请求数据
-      this.$store.dispatch('reqThingsData')
-    },
-    computed: {
-      ...mapState(["thingsNav","thingsData"])
-    },
-    components: {
-      Split,
-    } */
   }
 </script>
 
@@ -119,15 +63,25 @@
   width 100%
   height 100%
   overflow hidden
+  .headerNav
+    width 375px
+    height 33px
+    position relative
+    .headerList
+      color #333
+      font-size 14px
+      white-space nowrap
+      z-index 30
+      .item
+        height 33px
+        margin 0 6px
+        line-height 33px
+        display inline-block
+        text-align center
+        &.active
+          border-bottom 1px solid #b4282d
+          color #b4282d
   // 产品轮播图
-  .fixed
-    height 185px
-    width 100%
-    margin-top 120px
-    border-bottom 10px solid #eee
-    img 
-      height 140px
-      width 345px
   .Advice
     width 100%
     padding 0 14px
@@ -154,7 +108,7 @@
         color #333
       img
         height 160px
-        width 85%
+        width 95%
            
 
 </style>

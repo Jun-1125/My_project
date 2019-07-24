@@ -1,44 +1,44 @@
 <template>
   <div class="Home">
     <!-- 头部-->
-      <div class="headerTop">
-        <Header class="header">
-          <img class="logo" src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png" alt="">
-          <div class="input" @click="$router.push('/search')">
-            <i class="iconfont icon-search"></i>
-            <span class="placeholder">搜索商品，共21702款好物</span>
-          </div>
-          <a href="javascript:" @click="$router.push('/login')">登录</a>
-        </Header>
-      <!-- 头部导航 -->
-        <div class="headerNav" ref="wrapper">
-          <ul class="headerList">
+    <div class="headerTop">
+      <Header class="header">
+        <img class="logo" src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png" alt="">
+        <div class="input" @click="$router.push('/search')">
+          <i class="iconfont icon-search"></i>
+          <span class="placeholder">搜索商品，共21702款好物</span>
+        </div>
+        <a href="javascript:" @click="$router.push('/login')">登录</a>
+      </Header>
+    <!-- 头部导航 -->
+      <div class="headerNav" ref="wrapper">
+        <ul class="headerList">
+          <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
+          :class="index===newindex? 'item active':'item'">{{item}}</li>
+        </ul>
+        
+        <!-- 箭头arrow -->
+        <div class="arrow" @click="handleArrow">
+          <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png"
+              :class="isArrow ? 'downArrow' : 'upArrow'" alt="">
+        </div>
+        <!-- 遮罩层上的所有商品 -->
+        <div class="maskShop" v-show="isShow">
+          <div class="maskTitle">全部频道</div>
+          <ul class="headerList ">
             <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
             :class="index===newindex? 'item active':'item'">{{item}}</li>
           </ul>
-          
-          <!-- 箭头arrow -->
-          <div class="arrow" @click="handleArrow">
-            <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png"
-                :class="isArrow ? 'downArrow' : 'upArrow'" alt="">
-          </div>
-          <!-- 遮罩层上的所有商品 -->
-          <div class="maskShop" v-show="isShow">
-            <div class="maskTitle">全部频道</div>
-            <ul class="headerList ">
-              <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
-              :class="index===newindex? 'item active':'item'">{{item}}</li>
-            </ul>
-          </div>
         </div>
-        <!--home头部遮罩层-->
-        <section class="mask" v-show="isShow" @click="handleArrow"></section>
       </div>
-      <!-- 轮播图 Shuffling figure-->
-      <div class="Shuffling">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
+      <!--home头部遮罩层-->
+      <section class="mask" v-show="isShow" @click="handleArrow"></section>
+    </div>
+    <!-- 轮播图 Shuffling figure-->
+    <div class="Shuffling">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
               <img src="https://yanxuan.nosdn.127.net/8d2af3ab55bf51d5ac03e5d9c6fa1fc4.jpg?imageView&quality=75&thumbnail=750x0" alt="">
             </div>
             <div class="swiper-slide">
@@ -56,428 +56,293 @@
             <div class="swiper-slide">
               <img src="https://yanxuan.nosdn.127.net/7c1ce80acc7625c23246cc99e9cd8f4a.png?imageView&quality=75&thumbnail=750x0" alt="">
             </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
         </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
       </div>
-      <!-- 服务保障，安全 -->
-      <div class="Servesafety">
-        <span class="text">
-          <span>
-            <i class="iconfont icon-yi" style="color:#b4282d"></i>
-            网易自营品牌
-          </span>
-          <span>
-            <i class="iconfont icon-dunpai1" style="color:#b4282d"></i>
-            0天无忧退货
-          </span>
-          <span>
-            <i class="iconfont icon-qian" style="color:#b4282d"></i>
-            48小时快速退款
-          </span>
+    </div>
+    <!-- 服务保障，安全 -->
+    <div class="Servesafety">
+      <span class="text">
+        <span>
+          <i class="iconfont icon-yi" style="color:#b4282d"></i>
+          网易自营品牌
         </span>
+        <span>
+          <i class="iconfont icon-dunpai1" style="color:#b4282d"></i>
+          0天无忧退货
+        </span>
+        <span>
+          <i class="iconfont icon-qian" style="color:#b4282d"></i>
+          48小时快速退款
+        </span>
+      </span>
+    </div>
+    <!-- 滚动条的产品信息 -->
+    <div class="ProductInfo">
+      <!-- 事物图片 -->
+      <div class="Producticon">
+        <ul class="list" v-if="homeData.kingKongModule">
+          <li v-for="(item,index) in homeData.kingKongModule.kingKongList" :key="index">
+            <img :src="item.picUrl" style="height:55px;width:55px" alt="">
+            <span class="text">{{item.text}}</span>
+          </li>
+          
+        </ul>
       </div>
-      <!-- 滚动条的产品信息 -->
-      <div class="ProductInfo">
-        <!-- 事物图片 -->
-        <div class="Producticon">
-          <ul class="list">
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/c6fd8835a6400b7da7a016ad85506b69.png" style="height:55px;width:55px" alt="">
-              <span class="text">新品首发</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/fede8b110c502ec5799702d5ec824792.png" style="height:55px;width:55px" alt="">
-              <span class="text">居家生活</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/2415a74cea7d3f080c2dcaa791884572.png" style="height:55px;width:55px" alt="">
-              <span class="text">服饰鞋包</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/d916591adea776351e084016335e5820.png" style="height:55px;width:55px" alt="">
-              <span class="text">美食酒水</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/6c3bd9d885c818b1f73e497335a68b47.png" style="height:55px;width:55px" alt="">
-              <span class="text">个护清洁</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/6c3bd9d885c818b1f73e497335a68b47.png" style="height:55px;width:55px" alt="">
-              <span class="text">母婴亲子</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/559d2a240ec20b096590a902217009ff.png" style="height:55px;width:55px" alt="">
-              <span class="text">运动旅行</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/5c088559ebcc3f0ffcda663f04dfbeb2.png" style="height:55px;width:55px" alt="">
-              <span class="text">数码家电</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/f7281169d4e82d5d8d52aa1fec83fe01.png" style="height:55px;width:55px" alt="">
-              <span class="text">全球特色</span>
-            </li>
-            <li>
-              <img src="https://yanxuan.nosdn.127.net/3954c3cbeb4359dd7007be7a076e0dda.gif" style="height:55px;width:55px" alt="">
-              <span class="text">超级会员</span>
-            </li>
+      <!-- 新人专享礼 -->
+      <div class="PerGift">
+        <h3>新人专享礼</h3>
+        <div class="content">
+          <div class="left">
+            <span class="LeftText">新人专享礼包</span>
+            <div class="imgWrap">
+              <img src="https://yanxuan.nosdn.127.net/ba4d635ec94ad95b28bfab6500900659.png" alt="" style="width:100%;height:130px">
+            </div>
+          </div>
+          <div class="right">
+            <div class="top">
+              <a href="javascript:">
+                <div class="picWrap">
+                  <div class="lazyload">
+                    <img src="https://yanxuan.nosdn.127.net/db352a1dc9f26050b9df09f763b2f936.png?imageView&thumbnail=200x200&quality=75" alt="">
+                  </div>
+                  <div class="discount">
+                    <div>￥11</div>
+                    <div class="line2">￥22</div>
+                  </div>
+                </div>
+                <div class="cnt">
+                    <span class="title">福利社</span>
+                    <span class="subTitle">今日特价</span>
+                </div>
+              </a>
+            </div>
+            <div class="bottom">
+              <a href="javascript:">
+                <div class="picWrap">
+                  <div class="lazyload">
+                    <img src="https://yanxuan.nosdn.127.net/00382181864967c1125b75bd5289c8d3.png?imageView&thumbnail=200x200&quality=75" alt="">
+                  </div>
+                  <div class="discount">
+                    <div>￥1</div>
+                    <div class="line2">￥16</div>
+                  </div>
+                </div>
+                <div class="cnt">
+                    <span class="title">亲人拼团</span>
+                    <span class="subTitle"></span>
+                    <span class="tag">1元包邮</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 品牌制造商直供manufacturers -->
+      <div class="Manufacturers">
+        <div class="moduleTitle">
+          <span class="left">品牌制造商直供</span>
+          <a class="right" href="javascript:">
+            <span class="more">更多</span>
+            <span class="lgticon">></span>
+          </a>
+        </div>
+        <ul class="List">
+          <a class="ListItem" href="javascript:">
+            <img src="https://yanxuan.nosdn.127.net/74e2ea8f81004d0a60f90fc8e4649058.png?imageView&thumbnail=343y260&enlarge=1" alt="">
+            <div class="Listcontainer">
+              <h4 class="title">海外制造商</h4>
+              <div class="price">
+                <span class="PriceNumber">9.9</span>
+                <span class="PriceString">元起</span>
+              </div>
+            </div>
+          </a>
+          <a class="ListItem" href="javascript:">
+            <img src="https://yanxuan.nosdn.127.net/c097be14110f769d58245cdad73e15c3.png?imageView&thumbnail=343y260&enlarge=1" alt="">
+            <div class="Listcontainer">
+              <h4 class="title">CK制造商</h4>
+              <div class="price">
+                <span class="PriceNumber">29.9</span>
+                <span class="PriceString">元起</span>
+              </div>
+            </div>
+          </a>
+          <a class="ListItem" href="javascript:">
+            <img src="https://yanxuan.nosdn.127.net/66a23d776f41cba70d00803a5231124b.png?imageView&thumbnail=343y260&enlarge=1" alt="">
+            <div class="Listcontainer">
+              <h4 class="title">新秀制造商</h4>
+              <div class="price">
+                <span class="PriceNumber">169</span>
+                <span class="PriceString">元起</span>
+              </div>
+            </div>
+          </a>
+          <a class="ListItem" href="javascript:">
+            <img src="https://yanxuan.nosdn.127.net/3bf5a8a2f6eef284ecb40806ae9ce043.png?imageView&thumbnail=343y260&enlarge=1" alt="">
+            <div class="Listcontainer">
+              <h4 class="title">Nine West制造商</h4>
+              <div class="price">
+                <span class="PriceNumber">219</span>
+                <span class="PriceString">元起</span>
+              </div>
+            </div>
+          </a>
+        </ul>
+      </div>
+      <!-- 类目热销榜 -->
+      <div class="HotSell">
+        <div class="HotSellTitle">
+          <span class="left">类目热销榜</span>
+        </div>
+        <div class="content">
+          <ul class="ListTop">
+            <a class="ListItem1" href="javascript:">
+              <div class="Itemleft">
+                <span class="Lefttext">热销榜</span>
+              </div>
+              <div class="ItemImg">
+                <img src="https://yanxuan.nosdn.127.net/06388e29fad0b7e8a9d6b1f398e5dcd3.png?imageView&quality=65&thumbnail=200x200" alt="">
+              </div>
+            </a>
+            <a class="ListItem2" href="javascript:">
+              <div class="Itemright">
+                <span class="Lefttext">好评榜</span>
+              </div>
+              <div class="ItemImg">
+                <img src="https://yanxuan.nosdn.127.net/7dd208d4eb386ca3fc0f794963a0d70e.png?imageView&quality=65&thumbnail=200x200" alt="">
+              </div>
+            </a>
           </ul>
-        </div>
-        <!-- 新人专享礼 -->
-        <div class="PerGift">
-          <h3>新人专享礼</h3>
-          <div class="content">
-            <div class="left">
-              <span class="LeftText">新人专享礼包</span>
-              <div class="imgWrap">
-                <img src="https://yanxuan.nosdn.127.net/ba4d635ec94ad95b28bfab6500900659.png" alt="" style="width:100%;height:130px">
-              </div>
-            </div>
-            <div class="right">
-              <div class="top">
-                <a href="javascript:">
-                  <div class="picWrap">
-                    <div class="lazyload">
-                      <img src="https://yanxuan.nosdn.127.net/db352a1dc9f26050b9df09f763b2f936.png?imageView&thumbnail=200x200&quality=75" alt="">
-                    </div>
-                    <div class="discount">
-                      <div>￥11</div>
-                      <div class="line2">￥22</div>
-                    </div>
-                  </div>
-                  <div class="cnt">
-                      <span class="title">福利社</span>
-                      <span class="subTitle">今日特价</span>
-                  </div>
-                </a>
-              </div>
-              <div class="bottom">
-                <a href="javascript:">
-                  <div class="picWrap">
-                    <div class="lazyload">
-                      <img src="https://yanxuan.nosdn.127.net/00382181864967c1125b75bd5289c8d3.png?imageView&thumbnail=200x200&quality=75" alt="">
-                    </div>
-                    <div class="discount">
-                      <div>￥1</div>
-                      <div class="line2">￥16</div>
-                    </div>
-                  </div>
-                  <div class="cnt">
-                      <span class="title">亲人拼团</span>
-                      <span class="subTitle"></span>
-                      <span class="tag">1元包邮</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 品牌制造商直供manufacturers -->
-        <div class="Manufacturers">
-          <div class="moduleTitle">
-            <span class="left">品牌制造商直供</span>
-            <a class="right" href="javascript:">
-              <span class="more">更多</span>
-              <span class="lgticon">></span>
-            </a>
-          </div>
-          <ul class="List">
-            <a class="ListItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/74e2ea8f81004d0a60f90fc8e4649058.png?imageView&thumbnail=343y260&enlarge=1" alt="">
-              <div class="Listcontainer">
-                <h4 class="title">海外制造商</h4>
-                <div class="price">
-                  <span class="PriceNumber">9.9</span>
-                  <span class="PriceString">元起</span>
-                </div>
+          <ul class="ListBottom" style="height:100px;width:100px">
+            <a class="ListItem" href="javascript:" v-for="(item,index) in homeData.focusList" :key="index">
+              <div class="Item">
+                <span class="Life">{{item.name}}</span>
+                <img :src="item.picUrl"  alt="">
               </div>
             </a>
-            <a class="ListItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/c097be14110f769d58245cdad73e15c3.png?imageView&thumbnail=343y260&enlarge=1" alt="">
-              <div class="Listcontainer">
-                <h4 class="title">CK制造商</h4>
-                <div class="price">
-                  <span class="PriceNumber">29.9</span>
-                  <span class="PriceString">元起</span>
-                </div>
-              </div>
-            </a>
-            <a class="ListItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/66a23d776f41cba70d00803a5231124b.png?imageView&thumbnail=343y260&enlarge=1" alt="">
-              <div class="Listcontainer">
-                <h4 class="title">新秀制造商</h4>
-                <div class="price">
-                  <span class="PriceNumber">169</span>
-                  <span class="PriceString">元起</span>
-                </div>
-              </div>
-            </a>
-            <a class="ListItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/3bf5a8a2f6eef284ecb40806ae9ce043.png?imageView&thumbnail=343y260&enlarge=1" alt="">
-              <div class="Listcontainer">
-                <h4 class="title">Nine West制造商</h4>
-                <div class="price">
-                  <span class="PriceNumber">219</span>
-                  <span class="PriceString">元起</span>
-                </div>
+          </ul>
+          <ul class="ListBottom" style="height:100px;width:100px">
+            <a class="ListItem" href="javascript:" v-for="(item,index) in homeData.focusList" :key="index">
+              <div class="Item">
+                <span class="Life">{{item.name}}</span>
+                <img :src="item.picUrl"  alt="">
               </div>
             </a>
           </ul>
         </div>
-        <!-- 类目热销榜 -->
-        <div class="HotSell">
-          <div class="HotSellTitle">
-            <span class="left">类目热销榜</span>
-          </div>
-          <div class="content">
-            <ul class="ListTop">
-              <a class="ListItem1" href="javascript:">
-                <div class="Itemleft">
-                  <span class="Lefttext">热销榜</span>
-                </div>
-                <div class="ItemImg">
-                  <img src="https://yanxuan.nosdn.127.net/06388e29fad0b7e8a9d6b1f398e5dcd3.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem2" href="javascript:">
-                <div class="Itemright">
-                  <span class="Lefttext">好评榜</span>
-                </div>
-                <div class="ItemImg">
-                  <img src="https://yanxuan.nosdn.127.net/7dd208d4eb386ca3fc0f794963a0d70e.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-            </ul>
-            <ul class="ListBottom" style="height:100px;width:100px">
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">居家生活榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/7110ef3a50fa078f3ea904d9453a5588.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">美食酒水榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/f0e6ed6b4903403f5fafbedfac2d299d.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">居家生活榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/7110ef3a50fa078f3ea904d9453a5588.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">美食酒水榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/f0e6ed6b4903403f5fafbedfac2d299d.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-            </ul>
-            <ul class="ListBottom" style="height:100px;width:100px">
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">居家生活榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/7110ef3a50fa078f3ea904d9453a5588.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">美食酒水榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/f0e6ed6b4903403f5fafbedfac2d299d.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">居家生活榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/7110ef3a50fa078f3ea904d9453a5588.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-              <a class="ListItem" href="javascript:">
-                <div class="Item">
-                  <span class="Life">美食酒水榜</span>
-                  <img src="https://yanxuan.nosdn.127.net/f0e6ed6b4903403f5fafbedfac2d299d.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </a>
-            </ul>
-          </div>
+      </div>
+      <!-- 人气推荐  popular-->
+      <div class="PopularInfo">
+        <div class="InfoTitle">
+          <span class="left">人气推荐</span>
+          <a class="right" href="javascript:">
+            <span class="more">更多</span>
+            <span class="lgticon">></span>
+          </a>
         </div>
-        <!-- 人气推荐  popular-->
-        <div class="PopularInfo">
-          <div class="InfoTitle">
-            <span class="left">人气推荐</span>
-            <a class="right" href="javascript:">
-              <span class="more">更多</span>
-              <span class="lgticon">></span>
-            </a>
-          </div>
-          <ul class="InfoItem">
-            <a class="InfoTop" href="javascript:">
-              <span class="ItemLeft">
-                <img src="https://yanxuan.nosdn.127.net/85a480bd9a852da923b8d3b5c7f7b759.png?imageView&quality=65&thumbnail=280x280" alt="">
-              </span>
-              <div class="ItemRight">
-                <div class="news">
-                  <!-- 优惠券 coupon -->
-                  <span class="coupon">每满99减15券</span>
-                </div>
-                <span class="name">全棉针织条纹大豆纤维夏被 可机洗</span>
-                <span class="dec">可裸睡针织棉，植物抗菌柔弹</span>
-                <div class="price">
-                  <span>￥</span>
-                  <span>199</span>
-                </div>
+        <ul class="InfoItem">
+          <a class="InfoTop" href="javascript:">
+            <span class="ItemLeft">
+              <img src="https://yanxuan.nosdn.127.net/85a480bd9a852da923b8d3b5c7f7b759.png?imageView&quality=65&thumbnail=280x280" alt="">
+            </span>
+            <div class="ItemRight">
+              <div class="news">
+                <!-- 优惠券 coupon -->
+                <span class="coupon">每满99减15券</span>
               </div>
-            </a>
-            <a class="InfoBottom" href="javascript:">
-              <ul class="ListBottom">
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/4114839cec128a22b8f60ddafec3f944.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">红豆薏米丸 100克</span>
-                  <span class="price">￥39</span>
-                  <p class="addPrice">加购价</p>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/4114839cec128a22b8f60ddafec3f944.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">红豆薏米丸 100克</span>
-                  <span class="price">￥39</span>
-                  <p class="addPrice">加购价</p>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/4114839cec128a22b8f60ddafec3f944.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">红豆薏米丸 100克</span>
-                  <span class="price">￥39</span>
-                  <p class="addPrice">加购价</p>
-                </div>
-              </ul>
-            </a>
-          </ul>
-        </div>
-        <!-- 限时购 -->
-        <div class="SellTime">
-          <div class="SellTitle">
-            <span class="left">限时购</span>
-            <div class="middle">
-              <span class="middleNumber">00</span>
-              <span>:</span>
-              <span class="middleNumber">00</span>
-              <span>:</span>
-              <span class="middleNumber">14</span>
+              <span class="name">全棉针织条纹大豆纤维夏被 可机洗</span>
+              <span class="dec">可裸睡针织棉，植物抗菌柔弹</span>
+              <div class="price">
+                <span>￥</span>
+                <span>199</span>
+              </div>
             </div>
-            <a class="right" href="javascript:">
-              <span class="more">更多</span>
-              <span class="lgticon">></span>
-            </a>
+          </a>
+          <a class="InfoBottom" href="javascript:;">
+            <ul class="ListBottom">
+              <div class="Item" v-for="(item ,index) in homeData.focusList" :key="index">
+                <img :src="item.picUrl" alt="">
+                <span class="Life">红豆薏米丸 100克</span>
+                <span class="price">￥39</span>
+                <p class="addPrice">加购价</p>
+              </div>
+              
+            </ul>
+          </a>
+        </ul>
+      </div>
+      <!-- 限时购 -->
+      <div class="SellTime">
+        <div class="SellTitle">
+          <span class="left">限时购</span>
+          <div class="middle">
+            <span class="middleNumber">00</span>
+            <span>:</span>
+            <span class="middleNumber">00</span>
+            <span>:</span>
+            <span class="middleNumber">14</span>
           </div>
-          <div class="Sellmiddle">
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-            <a class="MiddleItem" href="javascript:">
-              <img src="https://yanxuan.nosdn.127.net/30cb11f1fbc360fb701bd735ea6deb2b.jpg?imageView&thumbnail=216x216&quality=75" alt="">
-              <div class="Middldiscount">
-                <div>￥219</div>
-                <div class="Middleline2">￥399</div>
-              </div>
-            </a>
-          </div>
+          <a class="right" href="javascript:">
+            <span class="more">更多</span>
+            <span class="lgticon">></span>
+          </a>
         </div>
-        <!-- 新品首发 -->
-        <div class="Update">
-          <div class="UpdateTitle">
-            <span class="left">人气推荐</span>
-            <a class="right" href="javascript:">
-              <span class="more">更多</span>
-              <span class="lgticon">></span>
-            </a>
-          </div>
-          <div class="UpdateTop">
-            <a class="UpdateBottom" href="javascript:">
-              <ul class="ListBottom">
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/a40fd46da5dcb4b91412272f331a61f5.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">网易智造四季全屏循环扇￥299</span>
-                  <p class="addPrice">满赠</p>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/609452a430143ec9e691abddb067ec67.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">全价成猫粮 1.8千克￥99</span>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/20818ef4e7d98ca6356b3ee59cc315ea.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">福禄寿喜 银铸金手镯￥1388</span>
-                </div>
-              </ul>
-              <ul class="ListBottom">
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/a40fd46da5dcb4b91412272f331a61f5.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">网易智造四季全屏循环扇￥299</span>
-                  <p class="addPrice">满赠</p>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/609452a430143ec9e691abddb067ec67.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">全价成猫粮 1.8千克￥99</span>
-                </div>
-                <div class="Item">
-                  <img src="https://yanxuan.nosdn.127.net/20818ef4e7d98ca6356b3ee59cc315ea.png?imageView&quality=65&thumbnail=330x330" alt="">
-                  <span class="Life">福禄寿喜 银铸金手镯￥1388</span>
-                </div>
-              </ul>
-            </a>
-          </div>
+        <div class="Sellmiddle">
+          <a class="MiddleItem" href="javascript:" v-for="(item ,index) in homeData.newItemList" :key="index">
+            <img :src="item.listPicUrl"  alt="">
+            <div class="Middldiscount">
+              <div>￥219</div>
+              <div class="Middleline2">￥399</div>
+            </div>
+          </a>
         </div>
+      </div>
+      <!-- 新品首发 -->
+      <div class="Update">
+        <div class="UpdateTitle">
+          <span class="left">人气推荐</span>
+          <a class="right" href="javascript:">
+            <span class="more">更多</span>
+            <span class="lgticon">></span>
+          </a>
+        </div>
+        <div class="UpdateTop">
+          <a class="UpdateBottom" href="javascript:">
+            <ul class="ListBottom" v-if="homeData.kingKongModule">
+              <div class="Item" v-for="(item ,index) in homeData.kingKongModule.kingKongList" :key="index">
+                <img :src="item.picUrl" alt="">
+                <span class="Life">网易智造四季全屏循环扇￥299</span>
+                <p class="addPrice">满赠</p>
+              </div>
+            </ul>
+            <ul class="ListBottom" v-if="homeData.kingKongModule">
+              <div class="Item" v-for="(item ,index) in homeData.focusList" :key="index">
+                <img :src="item.picUrl" alt="">
+                <span class="Life">网易智造四季全屏循环扇￥299</span>
+                <p class="addPrice">满赠</p>
+              </div>
+            </ul>
+          </a>
+        </div>
+      </div>
 
-        <!-- 底部轮播图 -->
-       <Classify/>
-      </div>
+      
+    </div>
 
   </div>
 </template>
 
 <script type="text/ecmascript-6">
- import Classify from './Classify.vue'
  import BScroll from 'better-scroll'
  import Swiper from 'swiper'
  import 'swiper/dist/css/swiper.css'
+ import {mapState} from 'vuex'//映射'
+ 
   export default {
     name:'Home',
-    components:{
-      Classify
-    },
+    
     data(){
       return{
         isArrow:true,
@@ -486,7 +351,9 @@
         navList:['推荐','居家生活','服饰鞋包','美食酒水','个护清洁','母婴亲子','运动旅行','数码家电','全球特色']
       }
     },
-    
+    computed:{
+      ...mapState(['homeData'])
+    },
     methods:{
       handleArrow () {
         this.isArrow = !this.isArrow
@@ -495,12 +362,17 @@
       
     },
     mounted(){
+      //分发事件分发action
+      this.$store.dispatch("getHomeData")
       new Swiper ('.swiper-container', {
         loop: true, // 循环模式选项
         // 如果需要分页器
         pagination: {
           el: '.swiper-pagination'
         }
+      })
+      new BScroll('.headerNav',{//导航滑动
+        scrollX: true
       })
     },
   }
@@ -1012,28 +884,29 @@
       .ListBottom
         width 100%
         height 220px
-        margin-left 8px
+        margin-left 4px
         display flex
-        white-space wrap 
+        flex-wrap wrap
+        text-wrap nowrap
+        flex-direction column
         .ListItem
           height 90px
           width 100%
-          margin 4px 5px
+          margin 4px 10px
           float left
           display block
           background #F5F5F5
           .Item
-            height 100%
-            width 100%
+            height 100px
+            width 160px
             .Life
               margin-top 10px
               text-align center
               font-size 12px
               color #333
             img
-              width 70px
+              width 100px
               height 70px
-              margin 0 0 0 9px
   //人气推荐
   .PopularInfo
     height 320px
@@ -1261,7 +1134,6 @@
               padding-right 10px
               vertical-align middle
               width 30px
-  //底部轮播图
- 
+
   
 </style>

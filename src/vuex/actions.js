@@ -83,8 +83,8 @@ export default {
   async getFehelper({commit}) {
     //发异步ajax请求
     const result = await reqFehelper ()
-    console.log(result)
-    if (result.code*1 === 200) {
+    // console.log(result)
+    if (result.code === 0) {
       commit(RECEIVE_FEHELPER,result.data)
     }
   },

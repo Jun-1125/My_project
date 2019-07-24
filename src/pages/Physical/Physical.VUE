@@ -3,7 +3,7 @@
     <Header>
       <div slot="title" class="slot">
         <span class="left"><i class="iconfont icon-shouye" @click="$router.push('/home')"></i></span>
-        <span :class="$route.path.indexOf('/find')!=-1?'active':''" @click="$router.push('/fehelper/physical')">发现</span>
+        <span style="color:#b4282d;font-weight:bold;font-size:24px" :class="$route.path.indexOf('/find')!=-1?'active':''" @click="$router.push('/fehelper/physical')">发现</span>
         <span :class="$route.path.indexOf('/select')!=-1?'active':''" @click="$router.push('/select')">甄选家</span>
         <span class="Right">
         <i class="iconfont icon-search"></i>
@@ -47,12 +47,12 @@
     span
       display block
       height 85px
-      font-size 20px
+      font-size 18px
       margin-right 36px
     .active
       color #b4282d
       font-weight bold
-      font-size 24px
+      font-size 18px
     .Right
       padding-left 3%
       .iconfont
