@@ -4,7 +4,7 @@
       <header class="Header">
         <form class="input"  @input="kong" v-model="searchContent" @keyup="search">
           <i class="iconfont icon-search"></i>
-          <span class="placeholder">{{searchInitialData.defaultKeyword.keyword}}</span>
+          <input class="placeholder" :placeholder="searchInitialData.defaultKeyword.keyword">
         </form>
         <span class="delete" @click="deleteSearchContent" v-show="searchContent">X</span>
         <span class="Cancel"@click="returnLast">取消</span>
@@ -89,11 +89,12 @@
           font-size 20px
         .placeholder
           height 21px
-          width 159px
+          width 255px
           font-size 14px
           color #666
           text-indent 14px
           margin-left 6px
+          background-color #ededed
       .delete
         width 30px
         height 30px

@@ -7,9 +7,10 @@ import {
     reqCategoryData,
     reqCategoryListData,
     reqThingsData,
-    reqThingsNav,
     reqSearchInitialData,
-    reqFehelper
+    reqFehelper,
+    reqUserInfo,
+    reqLogout
   } from '../api'
 
 import {
@@ -17,8 +18,9 @@ import {
     RECEIVE_CATEGORY,
     RECEIVE_SEARCHINITIAL,
     RECEIVE_THINGSDATA,
-    RECEIVE_THINGSNAV,
-    RECEIVE_FEHELPER
+    RECEIVE_FEHELPER,
+    LOGOUT,
+    RECEIVE_USER
 } from './mutation_type'
   
 export default {
@@ -40,7 +42,7 @@ export default {
     //发送异步ajax请求   
       //有顺序要求  reqCategoryData返回的一个promise   和index.js中的地址传递位置
     const result = await reqCategoryData () 
-    console.log(result)
+    // console.log(result)
     // 有结构后，提交mutation
     if(result.code===0){
       //提交  commit
@@ -60,18 +62,6 @@ export default {
     }
   },
 
-/*   async getThingsNav({commit},callback){
-    //发送异步ajax请求   
-      //有顺序要求  reqThingsNav返回的一个promise   和index.js中的地址传递位置
-    const result = await reqThingsNav () 
-    // 有结构后，提交mutation
-    if(result.code*1 === 200){
-      //提交  commit
-      commit(RECEIVE_THINGSNAV,result.data)//提交会触发mutations调用
-      callback()
-    }
-  }, */
-
   async reqThingsData({commit}) {
     //发异步ajax请求
     const result = await reqThingsData ()
@@ -89,12 +79,36 @@ export default {
     }
   },
 
-
   // 搜索
   async getSearchInitialData ({commit}) {
     const result = await reqSearchInitialData()
     if (result.code*1 === 200) {
       commit(RECEIVE_SEARCHINITIAL,result.data)
+    }
+  },
+
+  // 用户登录验证
+  async getLogout({commit},callback){
+    //发送异步ajax请求   
+      //有顺序要求  reqLogout返回的一个promise   和index.js中的地址传递位置
+    const result = await reqLogout () 
+    // 有结构后，提交mutation
+    if(result.code === 0){
+      //提交  commit
+      commit(LOGOUT,result.data)//提交会触发mutations调用
+      callback()
+    }
+  },
+
+  // 用户信息验证
+  async getUserInfo({commit}){
+    //发送异步ajax请求   
+      //有顺序要求  reqCode返回的一个promise   和index.js中的地址传递位置
+    const result = await reqUserInfo () 
+    // 有结构后，提交mutation
+    if(result.code === 0){
+      //提交  commit
+      commit(RECEIVE_USER,result.data.name || result.data.phone)//提交会触发mutations调用
     }
   },
   

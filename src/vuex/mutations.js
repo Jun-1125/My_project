@@ -7,7 +7,9 @@ import {
   RECEIVE_THINGSNAV,
   RECEIVE_THINGSDATA,
   RECEIVE_FEHELPER,
-  RECEIVE_SEARCHINITIAL
+  RECEIVE_SEARCHINITIAL,
+  RECEIVE_USER,
+  LOGOUT
 } from './mutation_type'
 export default {
 /* [RECEIVE_HOMEDATA](state, 自定义的实参address2) {
@@ -41,5 +43,14 @@ export default {
   [RECEIVE_FEHELPER](state, data) {
     state.fehelper = data
   },
+
+  //用户验证信息
+  [RECEIVE_USER] (state, data) {
+    state.userInfo = data
+  },
+  // 登录信息
+  [LOGOUT] (state) {
+    state.userInfo = ''
+  }
 
 }

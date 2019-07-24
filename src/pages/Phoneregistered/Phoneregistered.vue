@@ -16,13 +16,13 @@
         </a>
         <input class="Getproblem" type="text" placeholder="请输入密码">
         <button class="btn active">登录</button>
-        <sapn class="Rules" href="javascript:;">
+        <span class="Rules" href="javascript:;">
           <input type="checkbox">
           我同意
           <a href="javascript:;">《服务条款》</a>
           和
           <a href="javascript:;">《网易隐私政策》</a>
-        </sapn>
+        </span>
         <span class="email" @click="$router.push('/emailregistered')">邮箱账号注册></span>
       </div>
     </div>
@@ -85,6 +85,7 @@ import Header from '../../components/Header/Header.vue'
       bottom 100px
       display flex
       flex-direction column
+      width 90%
       .Getphone
         height 100%
         width 100%
@@ -113,7 +114,7 @@ import Header from '../../components/Header/Header.vue'
         line-height 30px
         margin-bottom 20px
       .btn
-        width 300px
+        width 100%
         margin-bottom 15px
         border 1px solid #b4282d
         color #b4282d

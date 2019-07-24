@@ -14,13 +14,13 @@
         <input class="Geterror" type="password" placeholder="6-16位字母数字字符组合密码">
         <button class="btn1">点击进行验证</button>
         <button class="btn active">下一步</button>
-        <sapn class="Rules" href="javascript:;">
+        <span class="Rules" href="javascript:;">
           <input type="checkbox">
           用户注册即代表同意
           <a href="javascript:;">《服务条款》</a>
           和
           <a href="javascript:;">《网易隐私政策》</a>
-        </sapn>
+        </span>
       </div>
      
     </div>
@@ -66,6 +66,7 @@
       bottom 100px
       display flex
       flex-direction column
+      width 90%
       .Getpwd
         margin-bottom 30px
         position relative
@@ -101,7 +102,7 @@
         text-indent 16px
         width 340px
       .btn
-        width 300px
+        width 100%
         margin-top 30px
         border 1px solid #45494c
         color #fff
@@ -109,7 +110,7 @@
         font-size 16px
         line-height 40px
       .btn1
-        width 300px
+        width 100%
         margin-top 30px
         border 1px solid #45494c
         color #45494c

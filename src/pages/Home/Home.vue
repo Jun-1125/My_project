@@ -197,33 +197,7 @@
           <span class="left">类目热销榜</span>
         </div>
         <div class="content">
-          <ul class="ListTop">
-            <a class="ListItem1" href="javascript:">
-              <div class="Itemleft">
-                <span class="Lefttext">热销榜</span>
-              </div>
-              <div class="ItemImg">
-                <img src="https://yanxuan.nosdn.127.net/06388e29fad0b7e8a9d6b1f398e5dcd3.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </div>
-            </a>
-            <a class="ListItem2" href="javascript:">
-              <div class="Itemright">
-                <span class="Lefttext">好评榜</span>
-              </div>
-              <div class="ItemImg">
-                <img src="https://yanxuan.nosdn.127.net/7dd208d4eb386ca3fc0f794963a0d70e.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </div>
-            </a>
-          </ul>
-          <ul class="ListBottom" style="height:100px;width:100px">
-            <a class="ListItem" href="javascript:" v-for="(item,index) in homeData.focusList" :key="index">
-              <div class="Item">
-                <span class="Life">{{item.name}}</span>
-                <img :src="item.picUrl"  alt="">
-              </div>
-            </a>
-          </ul>
-          <ul class="ListBottom" style="height:100px;width:100px">
+          <ul class="ListBottom">
             <a class="ListItem" href="javascript:" v-for="(item,index) in homeData.focusList" :key="index">
               <div class="Item">
                 <span class="Life">{{item.name}}</span>
@@ -317,13 +291,6 @@
                 <p class="addPrice">满赠</p>
               </div>
             </ul>
-            <ul class="ListBottom" v-if="homeData.kingKongModule">
-              <div class="Item" v-for="(item ,index) in homeData.focusList" :key="index">
-                <img :src="item.picUrl" alt="">
-                <span class="Life">网易智造四季全屏循环扇￥299</span>
-                <p class="addPrice">满赠</p>
-              </div>
-            </ul>
           </a>
         </div>
       </div>
@@ -382,12 +349,13 @@
 @import '../../common/stylus/mixins.styl'
 
 .Home
-  padding-bottom 100px
+  padding-bottom 50px
   height 100%
   width 100%
   overflow hidden
   .headerTop
     position fixed
+    width 100%
     margin-bottom 44px
     background-color #fff
     z-index 30
@@ -396,13 +364,13 @@
       display flex
       align-items center
       line-height 36px
-      padding 4px 20px
+      padding 4px 10px
       z-index 40
       .logo
         height 20px
       .input
-        height  29px
-        width 221px
+        height 29px
+        width 251px
         margin 0 4px 0 5px
         line-height 28px
         border-radius 1px
@@ -427,6 +395,7 @@
         text-align center
         line-height 20px
         border-radius 4px
+        margin-left 20px
     .headerNav
       width 375px
       height 33px
@@ -453,11 +422,11 @@
         z-index 60
         position absolute
         top 0
-        right 0
+        right -38px
         transition all 1s
         img 
           position absolute
-          top 0
+          top 4px
           right 10px
         .downArrow
           transform rotate(0deg)
@@ -543,16 +512,23 @@
       box-sizing border-box
       .list
         margin-left 10px
+        width 100%
+        height 100%
+        display flex
+        flex-direction column
+        flex-wrap wrap
         li
+          width 15%
+          height 50%
           display flex
           flex-direction column
-          margin 0 8px
-          float left
+          margin 0 5px
           .text
             font-size 12px
             white-space nowrap
             line-height 12px
             margin-top 6px
+            text-align center
   // 新人专享礼
   .PerGift
     width 100%
@@ -791,7 +767,7 @@
   //热销榜
   .HotSell
     width 100%
-    height 342px
+    height 465px
     border-bottom 10px solid #eee
     .HotSellTitle
       float left
@@ -804,112 +780,35 @@
         line-height 50px
     .content
       padding-top 50px
-      height 305px
+      height 75%
       width 100%
-      .ListTop
-        width 100%
-        height 100px
-        margin-left 8px
-        border-bottom 2px solid #eee
-        .ListItem1
-          height 100px
-          width 170px
-          float left
-          margin 0 2px 0
-          position relative
-          color #333
-          .Itemleft
-            height 100%
-            position relative
-            background #F9F3E4
-            .Lefttext
-              font-size 14px
-              width 100%
-              position absolute
-              top 30px
-              left 15px
-              z-index 6
-              &::after
-                content ''
-                position absolute
-                left 0
-                bottom -10px
-                height 2px
-                width 25px
-                background #333
-          .ItemImg
-            height 100px
-            width 100px
-            position absolute
-            right 0
-            top 0
-            img 
-              height 100%
-              width 100%
-        .ListItem2
-          height 100px
-          width 175px
-          float right
-          position relative
-          margin-right 17px
-          color #333
-          .Itemright
-            height 100%
-            position relative
-            background #EBEFF6
-            .Lefttext
-              font-size 14px
-              width 100%
-              position absolute
-              top 30px
-              left 15px
-              z-index 6
-              &::after
-                content ''
-                position absolute
-                left 0
-                bottom -10px
-                height 2px
-                width 25px
-                background #333
-          .ItemImg
-            height 100px
-            width 100px
-            position absolute
-            right 0
-            top 0
-            img 
-              height 100%
-              width 100%
       .ListBottom
         width 100%
-        height 220px
+        height 100%
         margin-left 4px
         display flex
         flex-wrap wrap
-        text-wrap nowrap
-        flex-direction column
         .ListItem
           height 90px
-          width 100%
-          margin 4px 10px
-          float left
-          display block
+          width 45%
+          margin 4px 8px
           background #F5F5F5
+          display flex
+          flex-wrap wrap
           .Item
             height 100px
-            width 160px
+            width 185px
             .Life
               margin-top 10px
               text-align center
               font-size 12px
               color #333
             img
-              width 100px
-              height 70px
+              width 100%
+              height 90%
   //人气推荐
   .PopularInfo
-    height 320px
+    height 457px
     width 100%
     border-bottom 10px solid #eee
     .InfoTitle
@@ -930,12 +829,12 @@
         padding-right 12px
     .InfoItem
       width 100%
-      height 280px
+      height 460px
       overflow hidden
       .InfoTop
         display inline-block
         height 130px
-        width 340px
+        width 94%
         border-radius 2px
         margin 2px 14px
         background-color #FEF0DF
@@ -983,21 +882,22 @@
       .InfoBottom
         display inline-block
         height 130px
-        width 340px
+        width 100%
         border-radius 2px
         margin 0px 14px
         .ListBottom
-          height 130px
-          width 108px
+          width 100%
           display flex
+          flex-wrap wrap
           .Item
-            margin-left 12px
+            width 25%
+            margin-left -4px
             padding-bottom 5px
             display flex
             flex-direction column
             img
               height 85px
-              width 106px
+              width 92px
             .Life
               font-size 5px
               overflow visible
@@ -1056,7 +956,7 @@
       display flex
       flex-wrap wrap
       .MiddleItem
-        margin-left 8px
+        margin-left 16px
         float left
         img
           height 130px
@@ -1072,7 +972,7 @@
             padding-left 4px
   //新品首发
   .Update
-    height 320px
+    height 550px
     width 100%
     border-bottom 10px solid #eee
     .UpdateTitle
@@ -1093,16 +993,18 @@
         padding-right 12px
     .UpdateBottom
         display inline-block
-        height 130px
-        width 340px
+        height 280px
+        width 100%
         border-radius 2px
         margin 0px 14px
         .ListBottom
           height 130px
-          width 108px
+          width 100%
           display flex
+          flex-wrap wrap
           .Item
             margin-left 12px
+            width 28%
             padding-bottom 5px
             display flex
             flex-direction column

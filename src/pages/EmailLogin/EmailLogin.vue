@@ -8,13 +8,14 @@
 
       <!-- 邮箱登录验证 validation-->
       <div class="LoginValidation">
-        <input class="Getphone" type="tel" maxlength='11' v-model="phone" placeholder="邮箱账号"> 
-        <input class="Geterror" type="password" placeholder="密码">
+        <input class="Getphone" type="tel" v-model="mail" placeholder="邮箱账号" @blur="Mail"> 
+        <input class="Geterror" type="password" placeholder="密码" v-model="pwd">
         <span class="GetMessage">
+          <div class="err" v-show="err">{{err}}</div>
           <span class="lg">注册账号</span>
           <span class="pwd">忘记密码</span>
         </span>
-        <button class="btn active">登录</button>
+        <button class="btn active" @click="login">登录</button>
         <button class="btn" @click="$router.back('/personal')">其他登录方式</button>
       </div>
       <!-- <section class="login_verification">
@@ -26,7 +27,7 @@
 
 <script type="text/ecmascript-6">
 import Header from '../../components/Header/Header.vue'
-
+import {reqLoginEmail} from '../../api'
   export default {
     name:'Login',
     components:{
@@ -34,16 +35,41 @@ import Header from '../../components/Header/Header.vue'
     },
     data(){
       return{
-        phone:'',//手机号验证
-        code:'',//验证码验证
-        computeTime:0,//发送验证码计时剩余的时间，为0时没有计时
-        isShowPwd:false//是否显示密码
+        mail:'',//邮箱验证
+        pwd:'',//密码验证
+        err:''
       }
     },
-    computed:{
+    /* computed:{
       isRightPhone(){
         return/^1\d{10}$/.test(this.phone)
       }
+    }, */
+    methods:{
+      //邮箱验证
+      Mail(){
+        if(!/^[a-zA-Z\d]+([-_.][a-zA-Z\d]+)*@([a-zA-Z\d][-.])+[a-zA-Z\d]{2,4}$/.test(this.mail) && this.mail){
+          this.err = '邮箱格式错误'
+        }else{
+          this.err = ''
+        }
+      },
+
+      async login(){
+        if(!/^[a-zA-Z\D]+([-_.][a-zA-Z\d]+)*@([a-zA-Z\d]+[-.])+[a-zA-Z\d]{2,4}$/.test(this.mail) && this.mail){
+          this.err = '邮箱格式错误'
+        }else{
+          const {mail,pwd} = this
+          const result = await reqLoginEmail(mail,pwd)
+          if(result.code===0){
+            this.$router.replace('/login')
+          }else{
+            alert('用户名或者密码错误')
+          }
+        }
+      }
+
+
     }
   }
 </script>
@@ -78,6 +104,7 @@ import Header from '../../components/Header/Header.vue'
       bottom 100px
       display flex
       flex-direction column
+      width 90%
       .Getphone
         border-bottom 2px solid #eee
         line-height 40px
@@ -87,11 +114,14 @@ import Header from '../../components/Header/Header.vue'
         width 100%
         position relative
         border-bottom 2px solid #eee
-        margin-bottom 60px
+        margin-bottom 80px
         line-height 40px
+        margin-top 20px
         background #fff
         color #333
         border-bottom 1px solid #eee
+        .err
+          color #b4282d
         .lg
           position absolute
           left 0
@@ -101,7 +131,7 @@ import Header from '../../components/Header/Header.vue'
           right 0
           bottom -50px
       .btn
-        width 300px
+        width 100%
         margin-bottom 15px
         border 1px solid #b4282d
         color #b4282d

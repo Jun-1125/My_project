@@ -1,11 +1,6 @@
 <template>
   <div class="Physical">
-    <div class="headerNav">
-      <ul class="headerList">
-        <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
-        :class="index===newindex? 'item active':'item'">{{item}}</li>
-      </ul>
-    </div>
+    
       <!-- 内容区域轮播图 -->
     <div v-for="(result,index) in fehelper.result" :key="index">
       <div class="Advice" v-for="(topic,index) in result.topics" :key="index">
@@ -42,9 +37,6 @@
      mounted () {
       //分发action请求
       this.$store.dispatch('getFehelper',() => {})
-      new BScroll('.headerNav',{//导航滑动
-        scrollX: true
-      })
     },
     computed: {
       ...mapState(["fehelper"])
@@ -59,28 +51,9 @@
 @import '../../common/stylus/mixins.styl'
 
 .Physical
-  padding-bottom 100px
-  width 100%
-  height 100%
-  overflow hidden
-  .headerNav
-    width 375px
-    height 33px
-    position relative
-    .headerList
-      color #333
-      font-size 14px
-      white-space nowrap
-      z-index 30
-      .item
-        height 33px
-        margin 0 6px
-        line-height 33px
-        display inline-block
-        text-align center
-        &.active
-          border-bottom 1px solid #b4282d
-          color #b4282d
+  position absolute
+  top 90px
+  left 0
   // 产品轮播图
   .Advice
     width 100%
