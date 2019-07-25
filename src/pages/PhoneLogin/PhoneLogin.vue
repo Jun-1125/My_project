@@ -49,7 +49,7 @@ import {reqLoginPhone,reqCode} from '../../api'
         phone:'',//手机号验证
         code:'',//验证码验证
         errPhone :'',//手机号码验证错误
-        errorCode:''//验证码错误信息
+        errCode:''//验证码错误信息
       }
     },
    /*  computed:{
@@ -66,16 +66,16 @@ import {reqLoginPhone,reqCode} from '../../api'
           this.errPhone = ''
         }
         if(!/^\d{6}$/.test(this.code.trim()) && this.code){
-          this.errorCode= '验证码格式错误'
+          this.errCode= '验证码格式错误'
         }else{
-          this.errorCode = ''
+          this.errCode = ''
         }
       },
       // 点击取消的叉
       handleClear(){
         this.phone = ''
         this.testPhone()
-        console.log(testPhone())
+        // console.log(testPhone())
       },
       //点击获取验证码
       getCode(){

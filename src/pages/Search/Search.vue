@@ -7,7 +7,7 @@
           <input class="placeholder" :placeholder="searchInitialData.defaultKeyword.keyword">
         </form>
         <span class="delete" @click="deleteSearchContent" v-show="searchContent">X</span>
-        <span class="Cancel"@click="returnLast">取消</span>
+        <span class="Cancel"@click="$router.back()">取消</span>
       </header>
       <h3 class="HotSearch">热门搜索</h3>
       <div class="Content" v-show="!searchContent">
@@ -43,9 +43,6 @@
       this.$store.dispatch("getSearchInitialData")
     },
     methods:{
-      returnLast(){
-        this.$router.back()
-      },
       kong(){
         this.searchData = []
       },
