@@ -295,6 +295,21 @@
         </div>
       </div>
 
+      <div class="Img">
+        <img src="https://yanxuan.nosdn.127.net/5a8fdfaa42b384309a0e7425305fabed.jpg?imageView&quality=75&thumbnail=750x0" alt="">
+      </div>
+      <div class="footerNav">
+        
+        <ul class="footerList">
+          <li class="item" v-for="(item ,index) in homeData.newItemList" :key="index">
+            <img :src="item.listPicUrl"  alt="">
+            <div class="discount">
+              <div>￥219</div>
+              <div class="Middleline2">￥399</div>
+            </div>
+          </li>
+        </ul>
+      </div>
       
     </div>
 
@@ -339,7 +354,12 @@
         }
       })
       new BScroll('.headerNav',{//导航滑动
-        scrollX: true
+        scrollX: true,
+        click:true
+      })
+      new BScroll('.footerNav',{//导航滑动
+        scrollX: true,
+        click:true
       })
     },
   }
@@ -1036,6 +1056,47 @@
               padding-right 10px
               vertical-align middle
               width 30px
-
+  
+  
+  .Img
+    height 180px
+    width 100%
+    margin-bottom 20px
+    img
+      height 100%
+      width 100%
+  .footerNav
+    height 145px
+    width 375px
+    position relative
+    border-bottom 10px solid #eee
+    .footerList
+      height 100px
+      color #333
+      font-size 14px
+      white-space nowrap
+      float left
+      .item
+        height 110px
+        width 130px
+        margin 0 6px
+        line-height 33px
+        display inline-block
+        text-align center
+        img
+          width 100%
+          height 100%
+        &.active
+          border-bottom 1px solid #b4282d
+          color #b4282d
+        .discount
+          color #b4282d
+          font-size 14px
+          padding-left 7px
+          display flex
+          .Middleline2
+            text-decoration line-through
+            color #7F7F7F
+            padding-left 4px
   
 </style>

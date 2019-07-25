@@ -11,11 +11,11 @@
             <i class="iconfont icon-iconfontgouwuche"></i>
           </span>
         </div>
-    </Header>
+      </Header>
       <div class="headerNav">
         <ul class="headerList">
           <li class="item" v-for="(item,index) in navList" :key="index" @click="newindex=index" 
-          :class="index===newindex? 'item active':'item'">{{item}}</li>
+          :class="index===newindex? 'active':''">{{item}}</li>
         </ul>
       </div>
     </div>
@@ -39,7 +39,8 @@
     },
     mounted(){
       new BScroll('.headerNav',{//导航滑动
-        scrollX: true
+        scrollX: true,
+        click:true
       })
     }
      
@@ -57,16 +58,18 @@
     background #fff
     z-index 20
     .headerNav
-      width 375px
       height 33px
+      width 375px
       position relative
       .headerList
         color #333
         font-size 14px
         white-space nowrap
-        z-index 30
+        float left
+        // z-index 30
         .item
           height 33px
+          width 60px
           margin 0 6px
           line-height 33px
           display inline-block

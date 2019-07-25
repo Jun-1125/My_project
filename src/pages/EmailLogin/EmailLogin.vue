@@ -18,9 +18,7 @@
         <button class="btn active" @click="login">登录</button>
         <button class="btn" @click="$router.back('/personal')">其他登录方式</button>
       </div>
-      <!-- <section class="login_verification">
-        <input type="tel" maxlength="8" placeholder="验证码" name="code" v-model="code">
-      </section> -->
+    
     </div>
   </div>
 </template>
